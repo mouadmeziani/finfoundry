@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: 'postgres:alpine'
+    container_name: 'postgres_container'
+    environment:
+      - 'POSTGRES_DB=finfoundrydb'
+      - 'POSTGRES_PASSWORD=iamgrout'
+      - 'POSTGRES_USER=mouadmeziani'
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data:/var/lib/postgresql/data
