@@ -3,6 +3,7 @@ package com.finfoundry.backend.controller;
 
 import com.finfoundry.backend.model.Budget;
 import com.finfoundry.backend.service.BudgetService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class BudgetController {
     private final BudgetService budgetService;
 
     @PostMapping
-    public ResponseEntity<Budget> createBudget(@RequestBody Budget budget) {
+    public ResponseEntity<Budget> createBudget(@Valid @RequestBody Budget budget) {
         Budget savedBudget = budgetService.createBudget(budget);
         return ResponseEntity.ok(savedBudget);
     }

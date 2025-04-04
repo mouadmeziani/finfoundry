@@ -5,6 +5,7 @@ import com.finfoundry.backend.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
         Category savedCategory = categoryService.createCategory(category);
         return ResponseEntity.ok(savedCategory);
     }

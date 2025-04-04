@@ -2,6 +2,7 @@ package com.finfoundry.backend.controller;
 
 import com.finfoundry.backend.model.Tag;
 import com.finfoundry.backend.service.TagService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class TagController {
     private final TagService tagService;
 
     @PostMapping
-    public ResponseEntity<Tag> createTag(@RequestBody Tag tag) {
+    public ResponseEntity<Tag> createTag(@Valid @RequestBody Tag tag) {
         Tag savedTag = tagService.createTag(tag);
         return ResponseEntity.ok(savedTag);
     }

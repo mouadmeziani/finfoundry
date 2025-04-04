@@ -2,6 +2,7 @@ package com.finfoundry.backend.controller;
 
 import com.finfoundry.backend.model.User;
 import com.finfoundry.backend.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User savedUser = userService.createUser(user);
         return ResponseEntity.ok(savedUser);
     }
