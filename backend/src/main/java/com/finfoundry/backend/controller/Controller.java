@@ -1,4 +1,4 @@
-package com.finfoundry.backend;
+package com.finfoundry.backend.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
