@@ -2,7 +2,6 @@ package com.finfoundry.backend.service;
 
 import com.finfoundry.backend.model.Transaction;
 import com.finfoundry.backend.port.TransactionRepositoryPort;
-import com.finfoundry.backend.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +18,6 @@ public class TransactionService {
     public List<Transaction> getTransactionsByUser(Long userId) {
         return transactionRepositoryPort.findByUserId(userId);
     }
-
     @Transactional
     public Transaction createTransaction(Transaction transaction) {
         if (transaction.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
