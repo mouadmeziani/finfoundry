@@ -29,4 +29,10 @@ public class TagRepositoryAdapter implements TagRepositoryPort {
     public List<Tag> findAll() {
         return tagRepository.findAll();
     }
+
+    @Override
+    public Optional<Tag> findById(Long id) {
+        return tagRepository.findById(id);
+    }
+
 }

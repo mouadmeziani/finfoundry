@@ -8,4 +8,6 @@ public interface TagRepositoryPort {
     Tag save(Tag tag);
     Optional<Tag> findByName(String name);
     List<Tag> findAll();
+
+    Optional<Tag> findById(Long id);
 }
