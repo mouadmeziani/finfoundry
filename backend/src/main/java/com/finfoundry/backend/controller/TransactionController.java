@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/transactions")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000") // Allow requests from frontend
 public class TransactionController {
 
     private final TransactionService transactionService;

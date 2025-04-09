@@ -11,9 +11,9 @@ import org.mapstruct.Mapping;
 public interface BudgetMapper {
     BudgetDTO toBudgetDTO(Budget budget);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "user", ignore = true) // will be set in service layer based on userId
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
+    //@Mapping(target = "id", ignore = true)
+    //@Mapping(target = "user", ignore = true) // will be set in service layer based on userId
+    //@Mapping(target = "createdAt", ignore = true)
+    //@Mapping(target = "updatedAt", ignore = true)
     Budget fromCreateBudgetRequest(CreateBudgetRequest request);
 }

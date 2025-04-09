@@ -23,5 +23,5 @@ public interface TransactionMapper {
     // @Mapping(target = "category", ignore = true) // likewise, set this based on request.categoryId if provided
     // @Mapping(target = "tags", ignore = true) // set based on request.tagIds if provided
     // @Mapping(source="type", target = "type", qualifiedByName = "stringToEnum")
-    // Transaction fromCreateTransactionRequest(CreateTransactionRequest request);
+     Transaction fromCreateTransactionRequest(CreateTransactionRequest request);
 }

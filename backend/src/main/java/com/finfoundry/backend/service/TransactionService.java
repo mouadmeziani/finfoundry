@@ -34,9 +34,11 @@ public class TransactionService {
     @Transactional(readOnly = true)
     public List<TransactionDTO> getTransactionsByUser(Long userId) {
         List<Transaction> transactions = transactionRepositoryPort.findByUserId(userId);
+
         List<TransactionDTO> transactionDTOs = transactions.stream()
                 .map(transactionMapper::toTransactionDTO)
                 .collect(Collectors.toList());
+
         return transactionDTOs;
     }
     // @Transactional
