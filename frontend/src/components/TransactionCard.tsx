@@ -1,3 +1,4 @@
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { Transaction } from "@/types/transaction";
 
 type TransactionCardProps = {
@@ -8,27 +9,27 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
   const { id, amount, description, date, type, category } = transaction;
 
   return (
-    <article
-      style={{ border: "1px solid #ccc", margin: "1rem 0", padding: "1rem" }}
-    >
-      <h2>{description}</h2>
-      <p>
+    <Box borderWidth="1px" borderRadius="md" p="4" mb="4" boxShadow="sm">
+      <Heading size="md" mb="2">
+        {description}
+      </Heading>
+      <Text>
         <strong>ID:</strong> {id}
-      </p>
-      <p>
+      </Text>
+      <Text>
         <strong>Amount:</strong> ${amount.toFixed(2)}
-      </p>
-      <p>
+      </Text>
+      <Text>
         <strong>Date:</strong> {date}
-      </p>
-      <p>
+      </Text>
+      <Text>
         <strong>Type:</strong> {type}
-      </p>
+      </Text>
       {category && (
-        <p>
+        <Text>
           <strong>Category:</strong> {category.name}
-        </p>
+        </Text>
       )}
-    </article>
+    </Box>
   );
 }

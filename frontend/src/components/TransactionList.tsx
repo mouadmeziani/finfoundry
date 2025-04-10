@@ -1,3 +1,4 @@
+import { Box, Text } from "@chakra-ui/react";
 import { Transaction } from "@/types/transaction";
 import TransactionCard from "./TransactionCard";
 
@@ -5,17 +6,15 @@ type TransactionListProps = {
   transactions: Transaction[];
 };
 
-export default function TransactionList({
-  transactions,
-}: TransactionListProps) {
+export default function TransactionList({ transactions }: TransactionListProps) {
   if (!transactions || transactions.length === 0) {
-    return <p>No transactions available.</p>;
+    return <Text>No transactions available.</Text>;
   }
   return (
-    <section>
+    <Box>
       {transactions.map((tx) => (
         <TransactionCard key={tx.id} transaction={tx} />
       ))}
-    </section>
+    </Box>
   );
 }

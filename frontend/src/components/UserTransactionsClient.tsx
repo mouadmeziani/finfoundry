@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Box, Spinner, Text } from "@chakra-ui/react";
 import { Transaction } from "@/types/transaction";
 import TransactionList from "@/components/TransactionList";
 
@@ -34,8 +35,22 @@ export default function UserTransactionsClient({ userId }: Props) {
     fetchTransactions();
   }, [userId]);
 
-  if (loading) return <div>Loading transactions...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading)
+    return (
+      <Box textAlign="center" py="10">
+        <Spinner size="xl" />
+        <Text mt="4">Loading transactions...</Text>
+      </Box>
+    );
+
+  if (error)
+    return (
+      <Box textAlign="center" py="10">
+        <Text color="red.500">{error}</Text>
+      </Box>
+    );
 
   return <TransactionList transactions={transactions} />;
 }
+
+

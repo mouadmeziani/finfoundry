@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Provider } from "@/components/ui/provider";
 
 export const metadata = {
   title: "FinFoundry",
@@ -12,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }
