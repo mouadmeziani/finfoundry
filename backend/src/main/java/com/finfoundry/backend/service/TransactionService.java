@@ -41,26 +41,26 @@ public class TransactionService {
 
         return transactionDTOs;
     }
-    // @Transactional
-    // public TransactionDTO createTransaction(CreateTransactionRequest request) {
-    //     Transaction transaction = transactionMapper.fromCreateTransactionRequest(request);
-    //     if (transaction.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
-    //         throw new IllegalArgumentException("Transaction amount must be positive.");
-    //     }
-    //     User user = userRepositoryPort.findById(request.getUserId()).orElseThrow(() -> new IllegalArgumentException("User not found."));
-    //     transaction.setUser(user);
-//
-    //     if(request.getCategoryId() != null) {
-    //         Category category = categoryRepositoryPort.findById(request.getCategoryId()).orElseThrow(() -> new IllegalArgumentException("Category not found."));
-    //         transaction.setCategory(category);
-    //     }
-    //     if(request.getTagIds() != null && !request.getTagIds().isEmpty()) {
-    //         Set<Tag> tags = request.getTagIds().stream()
-    //                 .map(id -> tagRepositoryPort.findById(id)
-    //                         .orElseThrow(() -> new IllegalArgumentException("Tag not found: " + id)))
-    //                 .collect(Collectors.toSet());
-    //         transaction.setTags(tags);
-    //     }
-    //     return transactionMapper.toTransactionDTO(transactionRepositoryPort.save(transaction));
-    // }
+    @Transactional
+    public TransactionDTO createTransaction(CreateTransactionRequest request) {
+        Transaction transaction = transactionMapper.fromCreateTransactionRequest(request);
+        if (transaction.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Transaction amount must be positive.");
+        }
+        User user = userRepositoryPort.findById(request.getUserId()).orElseThrow(() -> new IllegalArgumentException("User not found."));
+        transaction.setUser(user);
+
+        if(request.getCategoryId() != null) {
+            Category category = categoryRepositoryPort.findById(request.getCategoryId()).orElseThrow(() -> new IllegalArgumentException("Category not found."));
+            transaction.setCategory(category);
+        }
+        if(request.getTagIds() != null && !request.getTagIds().isEmpty()) {
+            Set<Tag> tags = request.getTagIds().stream()
+                    .map(id -> tagRepositoryPort.findById(id)
+                            .orElseThrow(() -> new IllegalArgumentException("Tag not found: " + id)))
+                    .collect(Collectors.toSet());
+            transaction.setTags(tags);
+        }
+        return transactionMapper.toTransactionDTO(transactionRepositoryPort.save(transaction));
+    }
 }

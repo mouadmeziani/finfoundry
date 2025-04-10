@@ -8,12 +8,14 @@ import com.finfoundry.backend.service.TransactionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -29,9 +31,16 @@ public class TransactionController {
         return ResponseEntity.ok(dtos);
     }
 
-    // @PostMapping
-    // public ResponseEntity<TransactionDTO> createTransaction(@Valid @RequestBody CreateTransactionRequest createTransactionRequest) {
-    //     TransactionDTO transaction = transactionService.createTransaction(createTransactionRequest);
-    //     return ResponseEntity.ok(transaction);
-    // }
+     @PostMapping
+     public ResponseEntity<?> createTransaction(@Valid @RequestBody CreateTransactionRequest createTransactionRequest, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = new HashMap<>();
+
+            bindingResult.getFieldErrors().forEach(error ->
+                    errors.put(error.getField(), error.getDefaultMessage()));
+            return ResponseEntity.badRequest().body(errors);
+        }
+         TransactionDTO transaction = transactionService.createTransaction(createTransactionRequest);
+         return ResponseEntity.ok(transaction);
+     }
 }
